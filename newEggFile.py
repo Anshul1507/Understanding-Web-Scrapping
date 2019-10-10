@@ -23,12 +23,28 @@ page_soup.body.span
 containers = page_soup.findAll("div",{"class":"item-container"})
 
 #count the items in container
-len(containers)
+# len(containers)
 
-#store the whole data of first container to contain variable
-contain = containers[0]
-container = containers[0]
+# #store the whole data of first container to contain variable
+# contain = containers[0]
+# container = containers[0]
 
-#shows the data inside a/div tag
-container.a
-container.div
+# #shows the data inside a/div tag
+# container.a
+# container.div
+
+for container in containers:
+	brand = container.div.div.a.img["title"]
+
+	title_container = container.findAll("a",{"class":"item-title"})
+	product_name = title_container[0].text
+
+	shipping_container = container.findAll("li",{"class":"price-ship"})
+	shipping_name = shipping_container[0].text.strip()
+
+	print("brand: " + brand)
+	print("product_name: " + product_name)
+	print("shipping_name: " + shipping_name)
+
+    
+
